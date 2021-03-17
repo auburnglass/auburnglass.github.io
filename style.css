@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+}
+
+header {
+    height: 250px;
+    padding: 10px;
+    background:hsl(200, 50%, 60%);
+    text-align: center;
+}
+header ul {
+    line-height: 2em;
+}
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+header a:hover {
+    color: white;
+}
+section p {
+    text-align: center;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+section a {
+    text-decoration: none;
+    display: block;
+    width: 150px;
+    background:dodgerblue;
+    color: white;
+    font-size: 20px;
+    margin: 20px auto;
+    line-height: 2em;
+    border-radius: 2em;
+}
+
+section a:hover {
+    opacity: 0.8;
+}
+
