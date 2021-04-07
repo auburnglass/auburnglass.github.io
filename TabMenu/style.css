@@ -1,0 +1,45 @@
+body {
+    font-size: 14px;
+}
+
+.container {
+    margin: 30px auto;
+    width: 500px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.menu li a {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    padding: 8px 0;
+    color: black;
+    text-decoration: none;
+}
+
+.menu li a.active {
+    background: black;
+    color: white;
+    border-radius: 4px 4px 0 0;
+}
+.menu li a:not(.active):hover {
+    opacity: 0.5;
+    transition: opacity 0.4s;
+}
+
+.content.active {
+    background: black;
+    color: white;
+    display: block;
+    min-height: 150px;
+    padding: 12px;
+}
+
+.content {
+    display: none;
+}
