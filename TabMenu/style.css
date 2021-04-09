@@ -20,6 +20,10 @@ body {
     padding: 8px 0;
     color: black;
     text-decoration: none;
+    
+    border: 1px solid black;
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
 }
 
 .menu li a.active {
