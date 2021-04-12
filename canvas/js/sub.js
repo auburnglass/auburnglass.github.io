@@ -12,6 +12,7 @@
         const CANVAS_WIDTH = 600;
         const CANVAS_HEIGHT = 240;
         const dpr = window.devicePixelRatio || 1; // ディスプレイの密度を取得 window.devicePixelRatioを取得できなかった場合は等倍を表す1を返す
+        // 毎回確認されるので関数に後で書き換える
         canvas.width = CANVAS_WIDTH * dpr;
         canvas.height = CANVAS_HEIGHT * dpr;
         ctx.scale(dpr, dpr);
