@@ -1,34 +1,53 @@
 'use strict';
 
 (() => {
+    // 描画クラス
     class Renderer {
         constructor(canvas) {
             this.ctx = canvas.getContext('2d')
+            this.WALL_SIZE = 10;
+            // canvasはクラス内で変更するが、クラスで保持するものではない
+        }
+        render(data) {
+            canvas.height = data.length * this.WALL_SIZE;
+            canvas.width = data[0].length * this.WALL_SIZE;
+
+            for (let row = 0; row < data.length; row++) {
+                for (let col = 0; col < data[0].length; col++) {
+                    if (data[row][col] === 1) {
+                        // fillRect(x座標, y座標, x幅, y幅)
+                        this.ctx.fillRect(
+                            col * this.WALL_SIZE, 
+                            row * this.WALL_SIZE, 
+                            this.WALL_SIZE, 
+                            this.WALL_SIZE
+                        );
+                    }
+                }
+            }
         }
     }
 
     class Meiro {
-        constructor(row, col, canvas) {
+        constructor(row, col, renderer) {
             // 棒倒し法では迷路のサイズは縦横奇数でないといけないのでそのためのチェック
             if (row < 5 || col < 5 || row % 2 === 0 || col % 2 === 0) {
                 alert('size not vaild');
             }
-            this.ctx = canvas.getContext('2d');
+            this.renderer = renderer;
             this.row = row;
             this.col = col;
 
-            this.WALL_SIZE = 10;
-            // canvasはクラス内で変更するが、クラスで保持するものではない
-            canvas.height = this.row * this.WALL_SIZE;
-            canvas.width = this.col * this.WALL_SIZE;
-
-            // 1が迷路の壁、0が通路
+            // canvas.height = this.row * this.WALL_SIZE;
+            // canvas.width = this.col * this.WALL_SIZE;
 
             // 迷路を作る部分は関数にする
             this.data = this.getData();
         }
         
+        // 迷路を作る
         getData() {
+            // 1が迷路の壁、0が通路
             const data = [];
 
             for (let row = 0; row < this.row; row++) {
@@ -95,19 +114,7 @@
         }
 
         render() {
-            for (let row = 0; row < this.data.length; row++) {
-                for (let col = 0; col < this.data[row].length; col++) {
-                    if (this.data[row][col] === 1) {
-                        // fillRect(x座標, y座標, x幅, y幅)
-                        this.ctx.fillRect(
-                            col * this.WALL_SIZE, 
-                            row * this.WALL_SIZE, 
-                            this.WALL_SIZE, 
-                            this.WALL_SIZE
-                        );
-                    }
-                }
-            }
+            this.renderer.render(this.data);
         }
     }
 
@@ -117,8 +124,7 @@
     }
 
     // Meiro(迷路の横の大きさ(行), 列の大きさ, canvas情報)
-    const meiro = new Meiro(21, 13, canvas);
-    // const meiro = new Meiro(21, 13, new Renderer(canvas));
+    const meiro = new Meiro(21, 13, new Renderer(canvas));
     meiro.render();
 
 })();
